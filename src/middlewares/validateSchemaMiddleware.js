@@ -5,8 +5,7 @@ export const validateSchemaMiddleware = (schema) => {
         const validate = new Validator();
         const validation = validate.validate(req.body, schema);
         if (validation.errors.length > 0) {
-            console.log(validation.errors)
-            return res.status(400).send("Schema inválido!")
+            return res.status(400).send({ error: "Schema inválido!", errors: validation.errors[0].message });
         }
 
         next();

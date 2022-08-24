@@ -5,5 +5,5 @@ export const isElectable = (req, res) => {
 
     const result = isClientElectable(document);
 
-    res.status(201).send(result);
+    res.status(200).send(result);
 }

@@ -1,25 +1,39 @@
+import { calculateComsumption } from "../utils/calculateComsumption.js";
+import { Validator } from "jsonschema";
+import { output } from "../schemas/inputOutputSchema.js";
+import { validateSchema } from "../utils/validateSchema.js";
+
 export const isClientElectable = (document) => {
-    const razoesInelegibilidade = [];
+    let result;
+    const inegibilityReasons = [];
 
     const isComsumptionClassElectable = verifyComsumptionClass(document.classeDeConsumo);
     const isTariffModalityElectable = verifyTariffModality(document.modalidadeTarifaria);
     const isMinimumComsumptionElectable = verifyMinimumComsumption(document.tipoDeConexao, document.historicoDeConsumo)
 
-    !isComsumptionClassElectable && razoesInelegibilidade.push('Classe de consumo não aceita');
-    !isTariffModalityElectable && razoesInelegibilidade.push('Modalidade tarifária não aceita');
-    !isMinimumComsumptionElectable && razoesInelegibilidade.push('Consumo mínimo não aceito');
+    !isComsumptionClassElectable && inegibilityReasons.push('Classe de consumo não aceita');
+    !isTariffModalityElectable && inegibilityReasons.push('Modalidade tarifária não aceita');
+    !isMinimumComsumptionElectable && inegibilityReasons.push('Consumo muito baixo para tipo de conexão');
 
-    if (razoesInelegibilidade.length === 0) {
-        return {
+    if (inegibilityReasons.length === 0) {
+        //considerando que para serem gerados 1000 kWh no Brasil são emitidos em média 84kg de CO2.
+        const co2 = 84;
+        const { totalComsumption } = calculateComsumption(document.historicoDeConsumo);
+
+        result = {
             "elegivel": true,
-            "economiaAnualDeCO2": 5553.24,
+            "economiaAnualDeCO2": ( totalComsumption * co2 ) / 1000
          }
     } else {
-        return {
+        result = {
             "elegivel": false,
-            "razoesInelegibilidade": razoesInelegibilidade,
+            "razoesInelegibilidade": inegibilityReasons,
          }       
     }
+
+    validateSchema(result, output);
+
+    return result;
 };
 
 export const verifyComsumptionClass = (comsumptionClass) => {
@@ -37,7 +51,7 @@ export const verifyTariffModality = (tariffModality) => {
 };
 
 export const verifyMinimumComsumption = (conectionType, comsumptionHistory) => {
-    const averageComsumption = calculateAverage(comsumptionHistory);
+    const { averageComsumption } = calculateComsumption(comsumptionHistory);
 
     if (conectionType === 'monofasico') {
         return averageComsumption > 400 ? true : false
@@ -49,15 +63,3 @@ export const verifyMinimumComsumption = (conectionType, comsumptionHistory) => {
         return averageComsumption > 750 ? true : false
     }
 };
-
-export const calculateAverage = (comsumptionHistory) => {
-    let total = 0;
-    let counter = 0;
-
-    comsumptionHistory.forEach((item) => {
-        total += item;
-        counter++;
-    });
-
-    return total / counter;
-}
