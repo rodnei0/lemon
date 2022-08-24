@@ -1,5 +1,5 @@
-import { Router } from "express";
-import isElectableRouter from "./isElectableRouter.js";
+import { Router } from 'express';
+import isElectableRouter from './isElectableRouter.js';
 
 const router = Router();
 

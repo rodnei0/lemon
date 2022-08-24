@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx nodemon"
+    "dev": "npx nodemon",
+    "lint": "npx eslint src/** --fix"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
     "jsonschema": "^1.4.1"
   },
   "devDependencies": {
+    "eslint": "^8.22.0",
     "nodemon": "^2.0.19"
   }
 }
