@@ -1,8 +1,8 @@
 import express, { json } from "express";
-import isElectableRouter from "./routers/isElectableRouter.js";
+import router from "./routers/index.js";
 
 const app = express();
 app.use(json());
-app.use(isElectableRouter);
+app.use(router);
 
 export default app;
