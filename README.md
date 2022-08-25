@@ -54,3 +54,9 @@ npm run dev
 ```bash
 http://localhost:5000/iseligible
 ```
+## How to run tests
+
+1. Open a terminal in the repository directory and run:
+```bash
+npm run test
+```

@@ -62,6 +62,6 @@ describe('POST /iseligible', () => {
 		const result = await supertest(app).post('/iseligible').send(body);
 
 		expect(result.status).toEqual(400);
-		expect(result.body.errors).toEqual('does not meet minimum length of 3');
+		expect(result.body.message).toEqual(['does not meet minimum length of 3']);
 	});
 });

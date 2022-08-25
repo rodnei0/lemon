@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import isEligibleRouter from './isElegibleRouter';
+import isEligibleRouter from './isElegibleRouter.js';
 
 const router = Router();
 
