@@ -8,6 +8,7 @@ module.exports = {
 		'ecmaVersion': 'latest',
 		'sourceType': 'module'
 	},
+	'plugins': ['jest'],
 	'rules': {
 		'indent': [
 			'error',
@@ -28,5 +29,10 @@ module.exports = {
 	},
 	'globals': {
 		'process': 'writable'
-	}
+	},
+	'env': {
+		'browser': true,
+		'node': true,
+		'jest/globals': true
+	  }
 };
