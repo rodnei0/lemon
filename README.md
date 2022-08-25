@@ -7,10 +7,28 @@ An API made to check if clients are electable to be part of Lemon
 ## Technologies
 
 - Node.js
-- Axios
+- Express
+- Navigation (Router)
 - Jest
 
-## How to run
+## How to run with Docker
+
+1. Clone this repository
+```bash
+git clone https://github.com/rodnei0/lemon
+```
+
+2. Open a terminal in the repository directory and run:
+```bash
+docker-compose up
+```
+
+3. Lemon API is ready! Make a POST request to localhost: 
+```bash
+http://localhost:5000/iselectable
+```
+
+## How to run localy
 
 1. Clone this repository
 ```bash
@@ -30,4 +48,9 @@ PORT=5000
 4. Run the app with
 ```bash
 npm run dev
+```
+
+5. Lemon API is ready! Make a POST request to localhost: 
+```bash
+http://localhost:5000/iselectable
 ```

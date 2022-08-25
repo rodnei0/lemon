@@ -2,26 +2,26 @@ import { calculateComsumption } from '../utils/calculateComsumption.js';
 import { output } from '../schemas/inputOutputSchema.js';
 import { validateSchema } from '../utils/validateSchema.js';
 
-export const isClientElectable = (document) => {
+export const isClientElectable = ({classeDeConsumo, modalidadeTarifaria, tipoDeConexao, historicoDeConsumo}) => {
 	let result;
 	const inegibilityReasons = [];
 
-	const isComsumptionClassElectable = verifyComsumptionClass(document.classeDeConsumo);
-	const isTariffModalityElectable = verifyTariffModality(document.modalidadeTarifaria);
-	const isMinimumComsumptionElectable = verifyMinimumComsumption(document.tipoDeConexao, document.historicoDeConsumo);
+	const isComsumptionClassElectable = verifyComsumptionClass(classeDeConsumo);
+	const isTariffModalityElectable = verifyTariffModality(modalidadeTarifaria);
+	const isMinimumComsumptionElectable = verifyMinimumComsumption(tipoDeConexao, historicoDeConsumo);
 
 	!isComsumptionClassElectable && inegibilityReasons.push('Classe de consumo não aceita');
 	!isTariffModalityElectable && inegibilityReasons.push('Modalidade tarifária não aceita');
 	!isMinimumComsumptionElectable && inegibilityReasons.push('Consumo muito baixo para tipo de conexão');
 
 	if (inegibilityReasons.length === 0) {
-		//considerando que para serem gerados 1000 kWh no Brasil são emitidos em média 84kg de CO2.
-		const co2 = 84;
-		const { totalComsumption } = calculateComsumption(document.historicoDeConsumo);
+		//considering that to generate 1000 kWh in Brazil, an average of 84 kg of CO2 is emitted
+		const CO2 = 84;
+		const { totalComsumption } = calculateComsumption(historicoDeConsumo);
 
 		result = {
 			'elegivel': true,
-			'economiaAnualDeCO2': ( totalComsumption * co2 ) / 1000
+			'economiaAnualDeCO2': ( totalComsumption * CO2 ) / 1000
 		};
 	} else {
 		result = {

@@ -19,6 +19,7 @@ describe('POST /iselectable', () => {
 
 		expect(result.status).toEqual(200);
 		expect(result.body.elegivel).toEqual(true);
+		expect(typeof result.body.economiaAnualDeCO2).toBe('number');
 	});
 
 	it('giving a valid body and unelectable data (comsumption class) should return status 200 and false for client is electable', async () => {

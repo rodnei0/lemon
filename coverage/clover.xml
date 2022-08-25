@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1661439814409" clover="3.2.0">
-  <project timestamp="1661439814409" name="All files">
-    <metrics statements="68" coveredstatements="68" conditionals="32" coveredconditionals="29" methods="11" coveredmethods="11" elements="111" coveredelements="108" complexity="0" loc="68" ncloc="68" packages="7" files="10" classes="10"/>
+<coverage generated="1661440956605" clover="3.2.0">
+  <project timestamp="1661440956606" name="All files">
+    <metrics statements="69" coveredstatements="69" conditionals="32" coveredconditionals="29" methods="11" coveredmethods="11" elements="112" coveredelements="109" complexity="0" loc="69" ncloc="69" packages="7" files="10" classes="10"/>
     <package name="src">
       <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.js" path="/home/rodnei0/projetos/lemon/src/app.js">
@@ -94,7 +94,7 @@
       </file>
     </package>
     <package name="src.utils">
-      <metrics statements="16" coveredstatements="16" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+      <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
       <file name="calculateComsumption.js" path="/home/rodnei0/projetos/lemon/src/utils/calculateComsumption.js">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
@@ -114,11 +114,12 @@
         <line num="23" count="2" type="stmt"/>
       </file>
       <file name="validateSchema.js" path="/home/rodnei0/projetos/lemon/src/utils/validateSchema.js">
-        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
         <line num="3" count="2" type="stmt"/>
         <line num="4" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
         <line num="6" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
       </file>
     </package>
   </project>
