@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import isElectableRouter from './isElectableRouter.js';
+import isEligibleRouter from './isElegibleRouter';
 
 const router = Router();
 
-router.use(isElectableRouter);
+router.use(isEligibleRouter);
 
 export default router;

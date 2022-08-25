@@ -3,8 +3,8 @@ import supertest from 'supertest';
 import { Validator } from 'jsonschema';
 import { output } from '../../src/schemas/inputOutputSchema.js';
 
-describe('POST /iselectable', () => {
-	it('giving a valid body and electable data should return status 200 and a valid response', async () => {
+describe('POST /iseligible', () => {
+	it('giving a valid body and eligible data should return status 200 and a valid response', async () => {
 		const body = {
 			'numeroDoDocumento': '14041737706',
 			'tipoDeConexao': 'bifasico',
@@ -17,7 +17,7 @@ describe('POST /iselectable', () => {
 			]
 		};
 
-		const result = await supertest(app).post('/iselectable').send(body);
+		const result = await supertest(app).post('/iseligible').send(body);
 		const validate = new Validator();
 		const validation = validate.validate(result.body, output);
 
@@ -27,7 +27,7 @@ describe('POST /iselectable', () => {
 		expect(validation.errors.length).toEqual(0);
 	});
 
-	it('giving a valid body and unelectable data (comsumption class) should return status 200 and and a valid response', async () => {
+	it('giving a valid body and ineligible data (comsumption class) should return status 200 and and a valid response', async () => {
 		const body = {
 			'numeroDoDocumento': '14041737706',
 			'tipoDeConexao': 'bifasico',
@@ -40,7 +40,7 @@ describe('POST /iselectable', () => {
 			]
 		};
 
-		const result = await supertest(app).post('/iselectable').send(body);
+		const result = await supertest(app).post('/iseligible').send(body);
 		const validate = new Validator();
 		const validation = validate.validate(result.body, output);
 
@@ -59,7 +59,7 @@ describe('POST /iselectable', () => {
 			'historicoDeConsumo': []
 		};
 
-		const result = await supertest(app).post('/iselectable').send(body);
+		const result = await supertest(app).post('/iseligible').send(body);
 
 		expect(result.status).toEqual(400);
 		expect(result.body.errors).toEqual('does not meet minimum length of 3');

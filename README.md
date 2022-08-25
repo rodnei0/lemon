@@ -2,7 +2,7 @@
 
 ## About
 
-An API made to check if clients are electable to be part of Lemon
+An API made to check if clients are eligible to be part of Lemon
 
 ## Technologies
 
@@ -25,7 +25,7 @@ docker-compose up
 
 3. Lemon API is ready! Make a POST request to localhost: 
 ```bash
-http://localhost:5000/iselectable
+http://localhost:5000/iseligible
 ```
 
 ## How to run locally
@@ -52,5 +52,5 @@ npm run dev
 
 5. Lemon API is ready! Make a POST request to localhost: 
 ```bash
-http://localhost:5000/iselectable
+http://localhost:5000/iseligible
 ```

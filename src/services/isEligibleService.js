@@ -1,16 +1,16 @@
 import { calculateComsumption } from '../utils/calculateComsumption.js';
 
-export const isClientElectable = ({classeDeConsumo, modalidadeTarifaria, tipoDeConexao, historicoDeConsumo}) => {
+export const isClientEligible = ({classeDeConsumo, modalidadeTarifaria, tipoDeConexao, historicoDeConsumo}) => {
 	let result;
 	const inegibilityReasons = [];
 
-	const isComsumptionClassElectable = verifyComsumptionClass(classeDeConsumo);
-	const isTariffModalityElectable = verifyTariffModality(modalidadeTarifaria);
-	const isMinimumComsumptionElectable = verifyMinimumComsumption(tipoDeConexao, historicoDeConsumo);
+	const isComsumptionClassEligible = verifyComsumptionClass(classeDeConsumo);
+	const isTariffModalityEligible = verifyTariffModality(modalidadeTarifaria);
+	const isMinimumComsumptionEligible = verifyMinimumComsumption(tipoDeConexao, historicoDeConsumo);
 
-	!isComsumptionClassElectable && inegibilityReasons.push('Classe de consumo não aceita');
-	!isTariffModalityElectable && inegibilityReasons.push('Modalidade tarifária não aceita');
-	!isMinimumComsumptionElectable && inegibilityReasons.push('Consumo muito baixo para tipo de conexão');
+	!isComsumptionClassEligible && inegibilityReasons.push('Classe de consumo não aceita');
+	!isTariffModalityEligible && inegibilityReasons.push('Modalidade tarifária não aceita');
+	!isMinimumComsumptionEligible && inegibilityReasons.push('Consumo muito baixo para tipo de conexão');
 
 	if (inegibilityReasons.length === 0) {
 		//considering that to generate 1000 kWh in Brazil, an average of 84 kg of CO2 is emitted
