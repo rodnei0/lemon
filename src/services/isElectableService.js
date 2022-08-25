@@ -1,6 +1,4 @@
 import { calculateComsumption } from '../utils/calculateComsumption.js';
-import { output } from '../schemas/inputOutputSchema.js';
-import { validateSchema } from '../utils/validateSchema.js';
 
 export const isClientElectable = ({classeDeConsumo, modalidadeTarifaria, tipoDeConexao, historicoDeConsumo}) => {
 	let result;
@@ -29,8 +27,6 @@ export const isClientElectable = ({classeDeConsumo, modalidadeTarifaria, tipoDeC
 			'razoesInelegibilidade': inegibilityReasons,
 		};       
 	}
-
-	validateSchema(result, output);
 
 	return result;
 };

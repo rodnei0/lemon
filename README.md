@@ -28,7 +28,7 @@ docker-compose up
 http://localhost:5000/iselectable
 ```
 
-## How to run localy
+## How to run locally
 
 1. Clone this repository
 ```bash
