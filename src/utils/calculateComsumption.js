@@ -1,14 +1,11 @@
 export const calculateComsumption = (comsumptionHistory) => {
-	let total = 0;
-	let counter = 0;
-
-	comsumptionHistory.forEach((item) => {
-		total += item;
-		counter++;
-	});
+	const totalComsumption = comsumptionHistory.reduce(
+		(previousValue, currentValue) => previousValue + currentValue,
+		0
+	);
 
 	return {
-		averageComsumption: total / counter,
-		totalComsumption: total
+		averageComsumption: totalComsumption / comsumptionHistory.length,
+		totalComsumption: totalComsumption
 	};
 };

@@ -8,9 +8,9 @@ export const isClientEligible = ({classeDeConsumo, modalidadeTarifaria, tipoDeCo
 	const isTariffModalityEligible = verifyTariffModality(modalidadeTarifaria);
 	const isMinimumComsumptionEligible = verifyMinimumComsumption(tipoDeConexao, historicoDeConsumo);
 
-	!isComsumptionClassEligible && inegibilityReasons.push('Classe de consumo não aceita');
-	!isTariffModalityEligible && inegibilityReasons.push('Modalidade tarifária não aceita');
-	!isMinimumComsumptionEligible && inegibilityReasons.push('Consumo muito baixo para tipo de conexão');
+	if (!isComsumptionClassEligible) inegibilityReasons.push('Classe de consumo não aceita');
+	if (!isTariffModalityEligible) inegibilityReasons.push('odalidade tarifária não aceita');
+	if (!isMinimumComsumptionEligible) inegibilityReasons.push('Consumo muito baixo para tipo de conexão');
 
 	if (inegibilityReasons.length === 0) {
 		//considering that to generate 1000 kWh in Brazil, an average of 84 kg of CO2 is emitted
@@ -49,12 +49,12 @@ export const verifyMinimumComsumption = (conectionType, comsumptionHistory) => {
 	const { averageComsumption } = calculateComsumption(comsumptionHistory);
 
 	if (conectionType === 'monofasico') {
-		return averageComsumption > 400 ? true : false;
+		return averageComsumption > 400;
 	}
 	if (conectionType === 'bifasico') {
-		return averageComsumption > 500 ? true : false;
+		return averageComsumption > 500;
 	}
 	if (conectionType === 'trifasico') {
-		return averageComsumption > 750 ? true : false;
+		return averageComsumption > 750;
 	}
 };
